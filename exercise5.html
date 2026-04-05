@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samrech-Web-Developer - Exercise 5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Khmer OS', 'MoolBoran', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header 
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #1e3c72;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1rem;
+        }
+        */
+        /* Navigation 
+        .nav {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: #1e3c72;
+            text-decoration: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            background: linear-gradient(135deg, #667eea 0%);
+            color: white;
+        }
+
+        .nav a.active {
+            background: linear-gradient(135deg, #667eea 0%);
+            color: white;
+        }
+        */
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .navbar a.active {
+            background: rgba(255,255,255,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Card 
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #1e3c72;
+            border-left: 5px solid #667eea;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 32px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Button */
+        .btn-calculate {
+           background: linear-gradient(135deg, #667eea);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-family: 'Khmer OS', 'MoolBoran', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .summary-item {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .summary-item label {
+            display: block;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .summary-item .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        .total-row {
+            background: #edf2f7;
+            font-weight: bold;
+        }
+
+        .total-row td {
+            border-top: 2px solid #667eea;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .info-box p {
+            margin: 5px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                padding: 1rem;
+            }
+            th, td {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+            .summary-item .value {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <header class="header">
+            <div class="navbar">
+                <a href="index.html">Home</a>
+                <a href="exercise1.html">Exercise 1</a>
+                <a href="exercise2.html">Exercise 2</a>
+                <a href="exercise3.html">Exercise 3</a>
+                <a href="exercise4.html">Exercise 4</a>
+                <a href="exercise5.html" class="active">Exercise 5</a>
+            </div>
+        </header>
+        <!-- Calculator Card -->
+        <div class="card">
+            <h1>បញ្ចូលទិន្នន័យកម្ចី</h1>
+            
+            <form id="loanForm" onsubmit="calculateLoan(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>ចំនួនប្រាក់កម្ចី (Principal)</label>
+                        <input type="number" id="principal" step="100" min="0" placeholder="ឧ. 1,000.00"required>
+                    </div>
+                    <div class="form-group">
+                        <label>អត្រាការប្រាក់ប្រចាំឆ្នាំ (Interest Rate %)</label>
+                        <input type="number" id="interestRate"  step="0.1" min="0" placeholder="ឧ. 12 %"required>
+                    </div>
+                    <div class="form-group">
+                        <label>រយៈពេលកម្ចី (ឆ្នាំ)</label>
+                        <input type="number" id="years"  step="0.5" min="0.5" placeholder="ឧ. 1 ឆ្នាំ"required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-calculate">គណនាការសងប្រាក់</button>
+            </form>
+        </div>
+
+        <!-- Results Card -->
+        <div id="results" style="display: none;">
+            <!-- Summary -->
+            <div class="card">
+                <h2>សង្ខេបលទ្ធផល</h2>
+                <div class="summary-box">
+                    <div class="summary-item">
+                        <label>ចំនួនប្រាក់កម្ចីសរុប</label>
+                        <div class="value" id="summaryPrincipal">$0.00</div>
+                    </div>
+                    <div class="summary-item">
+                        <label>អត្រាការប្រាក់ប្រចាំខែ</label>
+                        <div class="value" id="summaryMonthlyRate">0%</div>
+                    </div>
+                    <div class="summary-item">
+                        <label>រយៈពេលសរុប</label>
+                        <div class="value" id="summaryMonths">0 ខែ</div>
+                    </div>
+                    <div class="summary-item">
+                        <label>ការបង់រំលោះប្រចាំខែ</label>
+                        <div class="value" id="summaryMonthlyPayment">$0.00</div>
+                    </div>
+                     
+                    <div class="summary-iteme">
+                        <!--<label>ការប្រាក់សរុបត្រូវបង់</label>-->
+                        <div class="value" id="summaryTotalInterest"></div>
+                    </div>
+                    
+                    <div class="summary-iteme">
+                        <!--<label>ចំនួនសរុបត្រូវបង់</label>-->
+                        <div class="value" id="summaryTotalPayment"></div>
+                    </div>
+                  
+                </div>
+            </div>
+
+            <!-- Amortization Table -->
+            <div class="card">
+                <h2>តារាងសងប្រាក់ប្រចាំខែ</h2>
+                <div class="table-container">
+                    <table id="amortizationTable">
+                        <thead>
+                            <tr>
+                                <th>ល.រ</th>
+                                <th>កាលបរិច្ឆេទ</th>
+                                <th>ទំហំដើម (Principal)</th>
+                                <th>ការប្រាក់ (Interest)</th>
+                                <th>ការបង់រំលោះ (Payment)</th>
+                                <th>សងដើម (Principal Paid)</th>
+                                <th>សល់ដើម (Balance)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Info Box -->
+            <div class="info-box">
+                <p>💡 <strong>កំណត់ចំណាំ៖</strong></p>
+                <p>• ការប្រាក់គណនាតាមសមតុល្យដើមដែលនៅសល់ (Declining Balance)</p>
+                <p>• ការបង់រំលោះប្រចាំខែគឺថេរ (Fixed Monthly Payment)</p>
+                <p>• កាលបរិច្ឆេទចាប់ផ្ដើមសងគឺថ្ងៃទី 1 ខែបន្ទាប់ពីទទួលប្រាក់</p>
+            </div>
+        </div>
+
+       
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2026  | គណនារំលោះប្រាក់កម្ចីប្រកបដោយភាពងាយស្រួល</p>
+            <p>@NASARA-SAMRECHA2000</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateLoan(event) {
+            event.preventDefault();
+            
+            // Get input values
+            let principal = parseFloat(document.getElementById('principal').value);
+            let annualRate = parseFloat(document.getElementById('interestRate').value);
+            let years = parseFloat(document.getElementById('years').value);
+            
+            // Validate inputs
+            if (isNaN(principal) || principal <= 0) {
+                alert('សូមបញ្ចូលចំនួនប្រាក់កម្ចីឲ្យបានត្រឹមត្រូវ');
+                return;
+            }
+            if (isNaN(annualRate) || annualRate < 0) {
+                alert('សូមបញ្ចូលអត្រាការប្រាក់ឲ្យបានត្រឹមត្រូវ');
+                return;
+            }
+            if (isNaN(years) || years <= 0) {
+                alert('សូមបញ្ចូលរយៈពេលកម្ចីឲ្យបានត្រឹមត្រូវ');
+                return;
+            }
+            
+            // Calculate monthly interest rate
+            let monthlyRate = annualRate / 100 / 12;
+            let months = years * 12;
+            
+            // Calculate monthly payment using formula: PMT = P * (r * (1+r)^n) / ((1+r)^n - 1)
+            let monthlyPayment;
+            if (monthlyRate === 0) {
+                monthlyPayment = principal / months;
+            } else {
+                monthlyPayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+            }
+            
+            // Generate amortization schedule
+            let balance = principal;
+            let totalInterest = 0;
+            let schedule = [];
+            let startDate = new Date();
+            startDate.setMonth(startDate.getMonth() + 1);
+            startDate.setDate(1);
+            
+            for (let i = 1; i <= months; i++) {
+                let interest = balance * monthlyRate;
+                let principalPaid = monthlyPayment - interest;
+                
+                // Handle last payment rounding
+                if (i === months) {
+                    principalPaid = balance;
+                    monthlyPayment = principalPaid + interest;
+                }
+                
+                let newBalance = balance - principalPaid;
+                
+                // Calculate date
+                let paymentDate = new Date(startDate);
+                paymentDate.setMonth(startDate.getMonth() + (i - 1));
+                
+                schedule.push({
+                    period: i,
+                    date: paymentDate,
+                    startingBalance: balance,
+                    interest: interest,
+                    payment: monthlyPayment,
+                    principalPaid: principalPaid,
+                    endingBalance: newBalance
+                });
+                
+                totalInterest += interest;
+                balance = newBalance;
+                
+                if (balance <= 0.01) break;
+            }
+            
+            // Update summary
+            document.getElementById('summaryPrincipal').innerHTML = formatCurrency(principal);
+            document.getElementById('summaryMonthlyRate').innerHTML = (monthlyRate * 100).toFixed(2) + '%';
+            document.getElementById('summaryMonths').innerHTML = months + ' ខែ';
+            document.getElementById('summaryMonthlyPayment').innerHTML = formatCurrency(monthlyPayment);
+            //document.getElementById('summaryTotalInterest').innerHTML = formatCurrency(totalInterest);
+            //document.getElementById('summaryTotalPayment').innerHTML = formatCurrency(principal + totalInterest);
+            
+            // Display table
+            displayTable(schedule);
+            
+            // Show results
+            document.getElementById('results').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function displayTable(schedule) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            schedule.forEach(item => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${item.period}</td>
+                    <td>${formatDate(item.date)}</td>
+                    <td>${formatCurrency(item.startingBalance)}</td>
+                    <td>${formatCurrency(item.interest)}</td>
+                    <td>${formatCurrency(item.payment)}</td>
+                    <td>${formatCurrency(item.principalPaid)}</td>
+                    <td>${formatCurrency(item.endingBalance)}</td>
+                `;
+            });
+            
+            // Add total row
+            const totalRow = tbody.insertRow();
+            totalRow.className = 'total-row';
+            totalRow.innerHTML = `
+                <td colspan="2"><strong>សរុប</strong></td>
+                <td>-</td>
+                <td>${formatCurrency(schedule.reduce((sum, item) => sum + item.interest, 0))}</td>
+                <td>${formatCurrency(schedule.reduce((sum, item) => sum + item.payment, 0))}</td>
+                <td>${formatCurrency(schedule.reduce((sum, item) => sum + item.principalPaid, 0))}</td>
+                <td>-</td>
+            `;
+        }
+        
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+        }
+        
+        function formatDate(date) {
+            let year = date.getFullYear();
+            let month = String(date.getMonth() + 1).padStart(2, '0');
+            let day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+        
+        // Auto calculate on page load with default values
+        window.onload = function() {
+            // Set default values matching the image
+            //document.getElementById('principal').value = 1000;
+            //document.getElementById('interestRate').value = 12;
+            //document.getElementById('years').value = 1;
+            
+            // Trigger calculation
+            calculateLoan(new Event('submit'));
+        };
+    </script>
+</body>
+</html>

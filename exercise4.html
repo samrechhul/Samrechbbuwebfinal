@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Samrech-Web-Developer - Exercise 4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Khmer OS', 'MoolBoran', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles 
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+         Navigation */
+        .nav {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .nav a {
+            color: #1e3c72;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            background: linear-gradient(135deg, #667eea);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .navbar a.active {
+            background: rgba(255,255,255,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #1e3c72;
+            border-left: 5px solid #667eea;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .card h3 {
+            color: #2a5298;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        /* Code Block Styles */
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #764ba2;
+        }
+
+        /* Output Block */
+        .output-block {
+            background: #f0f4f8;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #667eea);
+            color: white;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .data-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        /* Badge Styles */
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .badge-php {
+            background: #8892bf;
+            color: white;
+        }
+
+        .badge-tip {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .badge-warning {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .tip-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="exercise1.html">Exercise 1</a>
+                <a href="exercise2.html">Exercise 2</a>
+                <a href="exercise3.html">Exercise 3</a>
+                <a href="exercise4.html" class="active">Exercise 4</a>
+                <a href="exercise5.html">Exercise 5</a>
+            </nav>
+        </header>
+        <!--<div class="container">
+         Header 
+        <div class="header">
+            <h1>មេរៀន PHP Data Types</h1>
+            <p>ស្វែងយល់អំពីប្រភេទទិន្នន័យទាំងអស់ក្នុងភាសា PHP ជាមួយឧទាហរណ៍ជាក់ស្តែង</p>
+        </div>-->
+
+        <!-- Navigation -->
+        <div class="nav">
+            <ul>
+                <li><a href="#intro">សេចក្តីផ្តើម</a></li>
+                <li><a href="#scalar">Scalar Types</a></li>
+                <li><a href="#compound">Compound Types</a></li>
+                <li><a href="#special">Special Types</a></li>
+                <li><a href="#type-check">ការពិនិត្យប្រភេទ</a></li>
+                <li><a href="#type-conversion">ការបំប្លែងប្រភេទ</a></li>
+            </ul>
+        </div>
+
+        <!-- Introduction -->
+        <div class="card" id="intro">
+            <h2>សេចក្តីផ្តើមអំពី Data Types</h2>
+            <p><strong>Data Types</strong> ឬ <strong>ប្រភេទទិន្នន័យ</strong> គឺជាការកំណត់ថាតើអថេរ (Variable) មួយអាចផ្ទុកទិន្នន័យប្រភេទណាខ្លះ។ ក្នុងភាសា PHP យើងមិនចាំបាច់ប្រកាសប្រភេទអថេរទេ ព្រោះ PHP គឺជា <strong>Dynamic Typed Language</strong> ដែលមានន័យថាប្រភេទទិន្នន័យនឹងត្រូវបានកំណត់ដោយស្វ័យប្រវត្តិតាមតម្លៃដែលផ្តល់ឲ្យ។</p>
+            
+            <div class="info-box">
+                <strong>ចំណុចសំខាន់៖</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>PHP គាំទ្រប្រភេទទិន្នន័យចំនួន ៨ ប្រភេទ</li>
+                    <li>ប្រភេទទិន្នន័យត្រូវបានកំណត់ដោយស្វ័យប្រវត្តិ (Dynamic Typing)</li>
+                    <li>អាចប្រើ function <code>var_dump()</code> ដើម្បីពិនិត្យប្រភេទ និងតម្លៃរបស់អថេរ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Scalar Types -->
+        <div class="card" id="scalar">
+            <h2>Scalar Types (ប្រភេទទិន្នន័យមូលដ្ឋាន)</h2>
+            <p>Scalar Types គឺជាប្រភេទទិន្នន័យដែលផ្ទុកតម្លៃតែមួយ (single value)។ មាន ៤ ប្រភេទគឺ៖</p>
+
+            <!-- Integer -->
+            <h3>1️⃣ Integer (ចំនួនគត់)</h3>
+            <p>ប្រើសម្រាប់ផ្ទុកចំនួនគត់ (គ្មានខ្ទង់ទសភាគ)។</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// Integer Types
+$age = 25;              // Decimal (ទសភាគ)
+$binary = 0b1010;       // Binary (គោលពីរ) = 10
+$octal = 0123;          // Octal (គោលប្រាំបី) = 83
+$hexadecimal = 0x1A;    // Hexadecimal (គោលដប់ប្រាំមួយ) = 26
+
+echo "Age: $age&lt;br&gt;";
+echo "Binary 0b1010 = $binary&lt;br&gt;";
+echo "Octal 0123 = $octal&lt;br&gt;";
+echo "Hexadecimal 0x1A = $hexadecimal&lt;br&gt;";
+echo "Max Integer: " . PHP_INT_MAX . "&lt;br&gt;";
+echo "Min Integer: " . PHP_INT_MIN;
+?&gt;</code></pre>
+            </div>
+            <div class="output-block">
+                <strong>លទ្ធផល៖</strong><br>
+                Age: 25<br>
+                Binary 0b1010 = 10<br>
+                Octal 0123 = 83<br>
+                Hexadecimal 0x1A = 26<br>
+                Max Integer: 9223372036854775807<br>
+                Min Integer: -9223372036854775808
+            </div>
+
+            <!-- Float -->
+            <h3>2️⃣ Float / Double (ចំនួនទសភាគ)</h3>
+            <p>ប្រើសម្រាប់ផ្ទុកចំនួនដែលមានខ្ទង់ទសភាគ។</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// Float Types
+$price = 99.99;
+$discount = 0.15;
+$scientific = 1.2e3;    // 1.2 × 10³ = 1200
+$negative = -45.67;
+
+echo "Price: $$price&lt;br&gt;";
+echo "Discount: " . ($discount * 100) . "%&lt;br&gt;";
+echo "Scientific: $scientific&lt;br&gt;";
+echo "Negative: $negative";
+?&gt;</code></pre>
+            </div>
+            <div class="output-block">
+                <strong>លទ្ធផល៖</strong><br>
+                Price: $99.99<br>
+                Discount: 15%<br>
+                Scientific: 1200<br>
+                Negative: -45.67
+            </div>
+
+            <!-- Boolean -->
+            <h3>3️⃣ Boolean (តម្លៃពិត/មិនពិត)</h3>
+            <p>ប្រើសម្រាប់ផ្ទុកតម្លៃឡូជីខល៖ <code>true</code> ឬ <code>false</code>។</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// Boolean Types
+$isActive = true;
+$isLoggedIn = false;
+$hasPermission = 1;     // 1 ត្រូវបានចាត់ទុកជា true
+$isEmpty = 0;           // 0 ត្រូវបានចាត់ទុកជា false
+
+echo "Is Active: " . ($isActive ? 'Yes' : 'No') . "&lt;br&gt;";
+echo "Is Logged In: " . ($isLoggedIn ? 'Yes' : 'No') . "&lt;br&gt;";
+echo "Has Permission: " . ($hasPermission ? 'Yes' : 'No') . "&lt;br&gt;";
+echo "Is Empty: " . ($isEmpty ? 'Yes' : 'No');
+?&gt;</code></pre>
+            </div>
+            <div class="output-block">
+                <strong>លទ្ធផល៖</strong><br>
+                Is Active: Yes<br>
+                Is Logged In: No<br>
+                Has Permission: Yes<br>
+                Is Empty: No
+            </div>
+
+            <!-- String -->
+            <h3>4️⃣ String (អក្សរ/អត្ថបទ)</h3>
+            <p>ប្រើសម្រាប់ផ្ទុកអត្ថបទ ឬតួអក្សរ។</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// String Types
+$singleQuote = 'Hello PHP';           // Single quotes
+$doubleQuote = "Hello PHP";           // Double quotes (អាចប្រើ variable)
+$name = "Samrech";
+$greeting = "Welcome, $name!";        // Variable parsing
+$heredoc = &lt;&lt;&lt;EOT
+This is a heredoc string.
+It can contain multiple lines.
+Variables like $name are parsed.
+EOT;
+
+echo "Single Quote: $singleQuote&lt;br&gt;";
+echo "Double Quote: $doubleQuote&lt;br&gt;";
+echo "Greeting: $greeting&lt;br&gt;";
+echo "Heredoc: $heredoc";
+?&gt;</code></pre>
+            </div>
+            <div class="output-block">
+                <strong>លទ្ធផល៖</strong><br>
+                Single Quote: Hello PHP<br>
+                Double Quote: Hello PHP<br>
+                Greeting: Welcome, Samrech!<br>
+                Heredoc: This is a heredoc string. It can contain multiple lines. Variables like Samrech are parsed.
+            </div>
+
+            <div class="tip-box">
+                <strong>💡គន្លឹះ៖</strong> ការប្រើ double quotes អនុញ្ញាតឲ្យយើងបញ្ចូល variable ដោយផ្ទាល់ក្នុង string ខណៈ single quotes មិនអាច។
+            </div>
+        </div>
+
+        <!-- Compound Types -->
+        <div class="card" id="compound">
+            <h2>Compound Types (ប្រភេទទិន្នន័យស្មុគស្មាញ)</h2>
+            <p>Compound Types គឺជាប្រភេទទិន្នន័យដែលអាចផ្ទុកតម្លៃច្រើនក្នុងពេលតែមួយ។</p>
+
+            <!-- Array -->
+            <h3>1️⃣ Array (អារេ)</h3>
+            <p>ប្រើសម្រាប់ផ្ទុកទិន្នន័យច្រើនជាបញ្ជី (list)។</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// Array Types
+$fruits = ["Apple", "Banana", "Orange"];           // Indexed array
+$person = [                                       // Associative array
+    "name" => "Samrech",
+    "age" => 25,
+    "city" => "Phnom Penh"
+];
+$matrix = [                                       // Multidimensional array
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+echo "Fruits: " . implode(", ", $fruits) . "&lt;br&gt;";
+echo "Name: " . $person["name"] . "&lt;br&gt;";
+echo "Matrix[1][1]: " . $matrix[1][1];
+?&gt;</code></pre>
+            </div>
+            <div class="output-block">
+                <strong>លទ្ធផល៖</strong><br>
+                Fruits: Apple, Banana, Orange<br>
+                Name: Samrech<br>
+                Matrix[1][1]: 5
+            </div>
+
+            <!-- Object -->
+            <h3>2️⃣ Object (វត្ថុ)</h3>
+            <p>ប្រើសម្រាប់ផ្ទុកទិន្នន័យក្នុងទម្រង់ Object-Oriented Programming (OOP)។</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// Object Type
+class Student {
+    public $name;
+    public $grade;
+    
+    public function __construct($name, $grade) {
+        $this->name = $name;
+        $this->grade = $grade;
+    }
+    
+    public function getInfo() {
+        return "Student: $this->name, Grade: $this->grade";
+    }
+}
+
+$student = new Student("Samrech", "A");
+echo $student->getInfo();
+?&gt;</code></pre>
+            </div>
+            <div class="output-block">
+                <strong>លទ្ធផល៖</strong><br>
+                Student: Samrech, Grade: A
+            </div>
+        </div>
+
+        <!-- Special Types -->
+        <div class="card" id="special">
+            <h2>Special Types (ប្រភេទពិសេស)</h2>
+
+            <h3>1️⃣ NULL</h3>
+            <p>ប្រើសម្រាប់ផ្ទុកតម្លៃទទេ (គ្មានតម្លៃ)។</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// NULL Type
+$var1 = null;
+$var2 = "Hello";
+$var2 = null;  // Unset variable
+
+if (is_null($var1)) {
+    echo "var1 is NULL&lt;br&gt;";
+}
+
+echo "var1 type: " . gettype($var1);
+?&gt;</code></pre>
+            </div>
+            <div class="output-block">
+                <strong>លទ្ធផល៖</strong><br>
+                var1 is NULL<br>
+                var1 type: NULL
+            </div>
+
+            <h3>2️⃣ Resource (ធនធាន)</h3>
+            <p>ប្រើសម្រាប់ផ្ទុកឯកសារយោងទៅកាន់ធនធានខាងក្រៅ (ដូចជា database connection, file handle)។</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// Resource Type
+$file = fopen("example.txt", "r");  // Resource type
+echo "File resource type: " . gettype($file);
+
+if (is_resource($file)) {
+    echo "&lt;br&gt;This is a resource";
+    fclose($file);  // Close resource
+}
+?&gt;</code></pre>
+            </div>
+            <div class="output-block">
+                <strong>លទ្ធផល៖</strong><br>
+                File resource type: resource<br>
+                This is a resource
+            </div>
+        </div>
+
+        <!-- Type Checking -->
+        <div class="card" id="type-check">
+            <h2>ការពិនិត្យប្រភេទទិន្នន័យ</h2>
+            <p>PHP ផ្តល់នូវ functions ជាច្រើនសម្រាប់ពិនិត្យប្រភេទទិន្នន័យ៖</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>ការពិពណ៌នា</th>
+                        <th>ឧទាហរណ៍</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>is_int()</code></td>
+                        <td>ពិនិត្យថាជា integer ឬអត់</td>
+                        <td><code>is_int(25) → true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>is_float()</code></td>
+                        <td>ពិនិត្យថាជា float ឬអត់</td>
+                        <td><code>is_float(99.99) → true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>is_string()</code></td>
+                        <td>ពិនិត្យថាជា string ឬអត់</td>
+                        <td><code>is_string("Hello") → true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>is_bool()</code></td>
+                        <td>ពិនិត្យថាជា boolean ឬអត់</td>
+                        <td><code>is_bool(true) → true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>is_array()</code></td>
+                        <td>ពិនិត្យថាជា array ឬអត់</td>
+                        <td><code>is_array([1,2,3]) → true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>is_object()</code></td>
+                        <td>ពិនិត្យថាជា object ឬអត់</td>
+                        <td><code>is_object(new stdClass()) → true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>is_null()</code></td>
+                        <td>ពិនិត្យថាជា null ឬអត់</td>
+                        <td><code>is_null(null) → true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>gettype()</code></td>
+                        <td>ប្រើដើម្បីទទួលប្រភេទទិន្នន័យជា string</td>
+                        <td><code>gettype(25) → "integer"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>var_dump()</code></td>
+                        <td>បង្ហាញព័ត៌មានលម្អិតអំពីអថេរ</td>
+                        <td><code>var_dump($var)</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// Type Checking Examples
+$var1 = 100;
+$var2 = "Hello";
+$var3 = [1, 2, 3];
+$var4 = null;
+
+echo "var1 is int: " . (is_int($var1) ? 'Yes' : 'No') . "&lt;br&gt;";
+echo "var2 is string: " . (is_string($var2) ? 'Yes' : 'No') . "&lt;br&gt;";
+echo "var3 is array: " . (is_array($var3) ? 'Yes' : 'No') . "&lt;br&gt;";
+echo "var4 is null: " . (is_null($var4) ? 'Yes' : 'No') . "&lt;br&gt;";
+
+echo "&lt;br&gt;var_dump of var1:&lt;br&gt;";
+var_dump($var1);
+?&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- Type Conversion -->
+        <div class="card" id="type-conversion">
+            <h2>🔄 ការបំប្លែងប្រភេទទិន្នន័យ (Type Conversion)</h2>
+            <p>PHP អនុញ្ញាតឲ្យបំប្លែងប្រភេទទិន្នន័យបានតាម ២ វិធី៖</p>
+
+            <h3>1. Implicit Type Conversion (បំប្លែងដោយស្វ័យប្រវត្តិ)</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// Implicit Conversion
+$number = "100";      // string
+$result = $number + 50;  // Auto convert to integer
+echo "Result: $result&lt;br&gt;";
+echo "Type: " . gettype($result);
+?&gt;</code></pre>
+            </div>
+            <div class="output-block">
+                <strong>លទ្ធផល៖</strong><br>
+                Result: 150<br>
+                Type: integer
+            </div>
+
+            <h3>2. Explicit Type Conversion (បំប្លែងដោយចេតនា)</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លង</button>
+                <pre><code>&lt;?php
+// Explicit Conversion
+$var = "123.45";
+
+$intVal = (int)$var;      // Cast to integer
+$floatVal = (float)$var;   // Cast to float
+$stringVal = (string)$intVal; // Cast to string
+$boolVal = (bool)$intVal;   // Cast to boolean
+
+echo "Original: $var (type: " . gettype($var) . ")&lt;br&gt;";
+echo "Integer: $intVal (type: " . gettype($intVal) . ")&lt;br&gt;";
+echo "Float: $floatVal (type: " . gettype($floatVal) . ")&lt;br&gt;";
+echo "String: $stringVal (type: " . gettype($stringVal) . ")&lt;br&gt;";
+echo "Boolean: " . ($boolVal ? 'true' : 'false') . " (type: " . gettype($boolVal) . ")";
+?&gt;</code></pre>
+            </div>
+            <div class="output-block">
+                <strong>លទ្ធផល៖</strong><br>
+                Original: 123.45 (type: string)<br>
+                Integer: 123 (type: integer)<br>
+                Float: 123.45 (type: double)<br>
+                String: 123 (type: string)<br>
+                Boolean: true (type: boolean)
+            </div>
+
+            <div class="warning-box">
+                <strong>ចំណាំសំខាន់៖</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>ការបំប្លែងពី string ទៅ integer ប្រសិនបើ string ចាប់ផ្តើមដោយលេខ នឹងទទួលបានតម្លៃលេខនោះ</li>
+                    <li>ប្រសិនបើ string មិនមានលេខនៅដើម នឹងទទួលបានតម្លៃ 0</li>
+                    <li>ការបំប្លែងទៅជា boolean៖ 0, 0.0, "", null, [] ត្រូវបានចាត់ទុកជា false</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Summary Table -->
+        <div class="card">
+            <h2>សង្ខេបប្រភេទទិន្នន័យក្នុង PHP</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ប្រភេទ</th>
+                        <th>ឈ្មោះជាភាសាអង់គ្លេស</th>
+                        <th>ឧទាហរណ៍</th>
+                        <th>ការពិពណ៌នា</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Integer</td><td>integer</td><td>25, -10, 0</td><td>ចំនួនគត់</td></tr>
+                    <tr><td>Float</td><td>float / double</td><td>3.14, -0.5, 1.2e3</td><td>ចំនួនទសភាគ</td></tr>
+                    <tr><td>String</td><td>string</td><td>"Hello", 'PHP'</td><td>អត្ថបទ</td></tr>
+                    <tr><td>Boolean</td><td>bool</td><td>true, false</td><td>តម្លៃពិត/មិនពិត</td></tr>
+                    <tr><td>Array</td><td>array</td><td>[1,2,3]</td><td>បញ្ជីទិន្នន័យ</td></tr>
+                    <tr><td>Object</td><td>object<\/td><td>new Student()</td><td>វត្ថុក្នុង OOP</td>
+                     </tr>
+                    <tr>
+                        <td>NULL</td>
+                        <td>null</td>
+                        <td>null</td>
+                        <td>គ្មានតម្លៃ</td>
+                    </tr>
+                    <tr>
+                        <td>Resource</td>
+                        <td>resource</td>
+                        <td>fopen()</td>
+                        <td>ធនធានខាងក្រៅ</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Exercise Section -->
+        <div class="card">
+            <h2>លំហាត់អនុវត្ត</h2>
+            <div class="info-box">
+                <strong>សាកល្បងអនុវត្ត៖</strong>
+                <ol style="margin-top: 10px; margin-left: 20px;">
+                    <li>បង្កើតអថេរដែលផ្ទុកឈ្មោះ អាយុ និងប្រាក់ខែរបស់អ្នក</li>
+                    <li>ពិនិត្យប្រភេទទិន្នន័យរបស់អថេរនីមួយៗ</li>
+                    <li>បង្កើត array ដែលផ្ទុកមុខវិជ្ជា ៥ មុខដែលអ្នកចូលចិត្ត</li>
+                    <li>បំប្លែង string "100.50" ទៅជា integer, float, និង boolean</li>
+                </ol>
+            </div>
+            
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">ចម្លងចម្លើយឧទាហរណ៍</button>
+                <pre><code>&lt;?php
+// ចម្លើយឧទាហរណ៍
+$name = "Samrech";
+$age = 25;
+$salary = 500.50;
+
+echo "Name: $name (type: " . gettype($name) . ")&lt;br&gt;";
+echo "Age: $age (type: " . gettype($age) . ")&lt;br&gt;";
+echo "Salary: $salary (type: " . gettype($salary) . ")&lt;br&gt;";
+
+$subjects = ["PHP", "JavaScript", "Python", "HTML", "CSS"];
+echo "Subjects: " . implode(", ", $subjects) . "&lt;br&gt;";
+
+$str = "100.50";
+echo "Original: $str (type: " . gettype($str) . ")&lt;br&gt;";
+echo "As integer: " . (int)$str . " (type: " . gettype((int)$str) . ")&lt;br&gt;";
+echo "As float: " . (float)$str . " (type: " . gettype((float)$str) . ")&lt;br&gt;";
+echo "As boolean: " . ((bool)$str ? 'true' : 'false') . " (type: " . gettype((bool)$str) . ")";
+?&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© មេរៀន PHP Data Types | រៀនសរសេរកូដ PHP ប្រកបដោយប្រសិទ្ធភាព</p>
+            <p style="margin-top: 10px;">💡 ចងចាំថា PHP គឺជា Dynamic Typed Language ដូច្នេះអថេរអាចផ្លាស់ប្តូរប្រភេទបានគ្រប់ពេល!</p>
+            <p>@NASARA-SAMRECHA2000</p>
+        </div>
+    </div>
+
+    <script>
+        // Copy code function
+        function copyCode(button) {
+            const codeBlock = button.parentElement;
+            const code = codeBlock.querySelector('pre code').innerText;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'ចម្លងរួច! ✓';
+                setTimeout(() => {
+                    button.innerText = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('មិនអាចចម្លងបានទេ សូមព្យាយាមម្តងទៀត');
+            });
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

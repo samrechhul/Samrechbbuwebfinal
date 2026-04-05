@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samrech-Web-Developer - Exercise 1</title>
+    <link rel="stylesheet" href="exercise3.css">
+    <!-- custom css -->
+
+    
+    <!-- <style>
+        /* Basic styles in case CSS file is missing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0 20px;
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .navbar a.active {
+            background: white;
+            color: #764ba2;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .calculator-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 2rem;
+        }
+        
+        h1 {
+            color: #1e3c72;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .result-box {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .result-header h3 {
+            color: #1e3c72;
+            font-size: 1.3rem;
+        }
+        
+        .kwh-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        
+        .meter-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .meter-info-item {
+            text-align: center;
+        }
+        
+        .meter-info-label {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .meter-info-value {
+            color: #1e3c72;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .details-table th {
+            background: #1e3c72;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .details-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .details-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .details-table tr:hover {
+            background: #f7fafc;
+        }
+        
+        .total-row {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        
+        .reset-btn {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: #718096;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .reset-btn:hover {
+            background: #4a5568;
+        }
+    </style>-->
+    <style>
+        
+        .result-box {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .result-header h3 {
+            color: #1e3c72;
+            font-size: 1.3rem;
+        }
+        
+        .kwh-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        
+        .meter-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .meter-info-item {
+            text-align: center;
+        }
+        
+        .meter-info-label {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .meter-info-value {
+            color: #1e3c72;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .details-table th {
+            background: #1e3c72;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .details-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .details-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .details-table tr:hover {
+            background: #f7fafc;
+        }
+        
+        .total-row {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        
+        .reset-btn {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: #718096;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .reset-btn:hover {
+            background: #4a5568;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- header -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="exercise1.html" class="active">Exercise 1</a>
+            <a href="exercise2.html">Exercise 2</a>
+            <a href="exercise3.html">Exercise 3</a>
+            <a href="exercise4.html">Exercise 4</a>
+            <a href="exercise5.html">Exercise 5</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="calculator-card">
+            <h1>គណនាថ្លៃអគ្គិសនី</h1>
+            
+            <form id="electricityForm" onsubmit="calculateBill(event)">
+                <div class="form-group">
+                    <label>លេខគីឡូចាស់ (គីឡូវ៉ាត់ម៉ោង):</label>
+                    <div class="input-group">
+                        <input type="number" 
+                               id="oldMeter"
+                               min="0" 
+                               step="0.01" 
+                               required 
+                               placeholder="1250.5">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>លេខគីឡូថ្មី (គីឡូវ៉ាត់ម៉ោង):</label>
+                    <div class="input-group">
+                        <input type="number" 
+                               id="newMeter"
+                               min="0" 
+                               step="0.01" 
+                               required 
+                               placeholder="1350.5">
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-calculate">គណនា</button>
+            </form>
+            
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+            
+            <div id="resultBox" class="result-box" style="display: none;">
+                <div class="result-header">
+                    <h3>លទ្ធផលគណនា</h3>
+                    <span id="kwhBadge" class="kwh-badge">0 kWh</span>
+                </div>
+                
+                <div class="meter-info">
+                    <div class="meter-info-item">
+                        <div class="meter-info-label">លេខគីឡូចាស់</div>
+                        <div id="oldMeterDisplay" class="meter-info-value">0.00</div>
+                    </div>
+                    <div class="meter-info-item">
+                        <div class="meter-info-label">លេខគីឡូថ្មី</div>
+                        <div id="newMeterDisplay" class="meter-info-value">0.00</div>
+                    </div>
+                    <div class="meter-info-item">
+                        <div class="meter-info-label">ប្រើប្រាស់សរុប</div>
+                        <div id="totalKwhDisplay" class="meter-info-value">0.00</div>
+                    </div>
+                </div>
+                
+                <h4 style="color: #1e3c72; margin-bottom: 15px;">ព័ត៌មានលម្អិត</h4>
+                
+                <table class="details-table">
+                    <thead>
+                        <tr>
+                            <th>លេខ ID</th>
+                            <th>គីឡូ(kWh)</th>
+                            <th>បរិមាណប្រើ</th>
+                            <th>តម្លៃ/kWh</th>
+                            <th>ត្រូវបង់ថ្លៃ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailsTableBody">
+                    </tbody>
+                </table>
+                
+                <div style="margin-top: 20px; text-align: right; font-size: 1.2rem;">
+                    <span style="color: #4a5568;">ថ្លៃសេវា:</span>
+                    <span id="serviceCharge" style="font-weight: 600; color: #1e3c72;">0 រៀល</span>
+                </div>
+                <div style="margin-top: 10px; text-align: right; font-size: 1.4rem; border-top: 2px solid #e2e8f0; padding-top: 10px;">
+                    <span style="color: #4a5568;">សរុប:</span>
+                    <span id="totalAmount" style="font-weight: 700; color: #667eea;">0 រៀល</span>
+                </div>
+            </div>
+            
+            <a href="#" onclick="resetForm(event)" class="reset-btn">គណនាថ្មី</a>
+        </div>
+    </div>
+    
+    <!-- script -->
+    <script>
+        // Electricity Bill Calculator Class
+        class ElectricityBillCalculator {
+            constructor() {
+                // តម្លៃក្នុងមួយគីឡូវ៉ាត់ម៉ោង (រៀល)
+                this.rates = [
+                    { min: 0, max: 50, rate: 610 },     // 0-50 kWh
+                    { min: 51, max: 100, rate: 720 },   // 51-100 kWh
+                    { min: 101, max: 200, rate: 830 },  // 101-200 kWh
+                    { min: 201, max: 300, rate: 940 },  // 201-300 kWh
+                    { min: 301, max: 400, rate: 1050 }, // 301-400 kWh
+                    { min: 401, max: Infinity, rate: 1160 } // >400 kWh
+                ];
+                
+                this.serviceCharge = 3800; // ថ្លៃសេវាប្រចាំខែ
+            }
+            
+            calculate(oldMeter, newMeter) {
+                // គណនាចំនួនគីឡូវ៉ាត់ម៉ោងដែលប្រើប្រាស់
+                const kwh = newMeter - oldMeter;
+                
+                if (kwh < 0) {
+                    return { error: 'លេខគីឡូថ្មីត្រូវតែធំជាងលេខវាស់ចាស់' };
+                }
+                
+                if (kwh === 0) {
+                    return { error: 'មិនមានការប្រើប្រាស់អគ្គិសនីទេ' };
+                }
+                
+                return this.calculateBill(kwh, oldMeter, newMeter);
+            }
+            
+            calculateBill(kwh, oldMeter, newMeter) {
+                let total = 0;
+                let remainingKwh = kwh;
+                let details = [];
+                
+                for (let index = 0; index < this.rates.length; index++) {
+                    if (remainingKwh <= 0) break;
+                    
+                    const rate = this.rates[index];
+                    const tierRange = rate.max - rate.min + 1;
+                    const kwhInTier = Math.min(remainingKwh, tierRange);
+                    const cost = kwhInTier * rate.rate;
+                    
+                    details.push({
+                        tier: index + 1,
+                        range: rate.max === Infinity ? 
+                               `${rate.min}+ kWh` : 
+                               `${rate.min}-${rate.max} kWh`,
+                        kwh: kwhInTier,
+                        rate: rate.rate,
+                        cost: cost
+                    });
+                    
+                    total += cost;
+                    remainingKwh -= kwhInTier;
+                }
+                
+                const totalWithService = total + this.serviceCharge;
+                
+                return {
+                    kwh: kwh,
+                    old_meter: oldMeter,
+                    new_meter: newMeter,
+                    details: details,
+                    energy_cost: total,
+                    service_charge: this.serviceCharge,
+                    total: totalWithService
+                };
+            }
+            
+            formatCurrency(amount) {
+                return amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' រៀល';
+            }
+        }
+        
+        // Initialize calculator
+        const calculator = new ElectricityBillCalculator();
+        
+        // Calculate bill function
+        function calculateBill(event) {
+            event.preventDefault();
+            
+            // Get input values
+            const oldMeter = parseFloat(document.getElementById('oldMeter').value) || 0;
+            const newMeter = parseFloat(document.getElementById('newMeter').value) || 0;
+            
+            // Calculate
+            const result = calculator.calculate(oldMeter, newMeter);
+            
+            // Hide error message initially
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.style.display = 'none';
+            
+            // Check for error
+            if (result.error) {
+                errorDiv.textContent = result.error;
+                errorDiv.style.display = 'block';
+                document.getElementById('resultBox').style.display = 'none';
+                return;
+            }
+            
+            // Display results
+            displayResults(result);
+        }
+        
+        // Display results function
+        function displayResults(result) {
+            // Show result box
+            document.getElementById('resultBox').style.display = 'block';
+            
+            // Update badge and displays
+            document.getElementById('kwhBadge').textContent = result.kwh + ' kWh';
+            document.getElementById('oldMeterDisplay').textContent = result.old_meter.toFixed(2);
+            document.getElementById('newMeterDisplay').textContent = result.new_meter.toFixed(2);
+            document.getElementById('totalKwhDisplay').textContent = result.kwh.toFixed(2);
+            
+            // Update table
+            const tableBody = document.getElementById('detailsTableBody');
+            tableBody.innerHTML = '';
+            
+            result.details.forEach(detail => {
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${detail.tier}</td>
+                    <td>${detail.range}</td>
+                    <td>${detail.kwh} kWh</td>
+                    <td>${detail.rate.toLocaleString()} រៀល</td>
+                    <td>${detail.cost.toLocaleString()} រៀល</td>
+                `;
+            });
+            
+            // Update totals
+            document.getElementById('serviceCharge').textContent = calculator.formatCurrency(result.service_charge);
+            document.getElementById('totalAmount').textContent = calculator.formatCurrency(result.total);
+        }
+        
+        // Reset form function
+        function resetForm(event) {
+            event.preventDefault();
+            document.getElementById('electricityForm').reset();
+            document.getElementById('resultBox').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
